@@ -1,20 +1,33 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Push App
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="borrarMensajes()">
+        <ion-icon color="danger" slot="end" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-list>
+    <ion-list-header>
+      <ion-label>User ID: {{pushSrv.userId}}</ion-label>
+    </ion-list-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-list-header>
+      <ion-label>Push Notifications</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let mensaje of mensajes">
+      <ion-label>
+        <h3>{{mensaje.title}}</h3>
+        <p>{{mensaje.body}}</p>
+        <p>{{mensaje.additionalData | json}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
